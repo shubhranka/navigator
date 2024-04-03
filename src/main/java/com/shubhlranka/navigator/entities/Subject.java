@@ -23,9 +23,9 @@ public class Subject {
     @UniqueElements
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
     private List<Student> students;
 
-    @OneToMany
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Exam> exams;
 }

@@ -28,4 +28,8 @@ public class ExamService {
         exam = examRepository.save(exam);
         return exam;
     }
+
+    public void deleteExam(Long examId) {
+        examRepository.deleteById(examId);
+    }
 }
