@@ -1,5 +1,6 @@
 package com.shubhlranka.navigator.entities;
 
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -17,15 +18,18 @@ import java.util.List;
 public class Subject {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotBlank(message = "Subject name is mandatory")
-    @UniqueElements
+    @Column(unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
+    @JsonIncludeProperties("name")
     private List<Student> students;
 
-    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIncludeProperties("id")
     private List<Exam> exams;
 }

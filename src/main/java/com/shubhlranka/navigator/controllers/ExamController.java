@@ -18,8 +18,8 @@ public class ExamController {
         return "Exam created with id: " + exam.getId();
     }
 
-    @DeleteMapping("/exam/:id")
-    public String deleteExam(@PathParam("id") long id) {
+    @DeleteMapping("/exam/{id}")
+    public String deleteExam(@PathVariable("id") long id) {
         examService.deleteExam(id);
         return "Exam deleted";
     }

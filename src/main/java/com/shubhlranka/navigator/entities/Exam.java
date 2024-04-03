@@ -21,7 +21,7 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @NotNull(message = "Exam subject is mandatory")
     private Subject subject;
 
