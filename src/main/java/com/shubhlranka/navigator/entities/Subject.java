@@ -25,8 +25,8 @@ public class Subject {
     @Column(unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "subjects", cascade = CascadeType.ALL)
-    @JsonIncludeProperties("name")
+    @ManyToMany
+    @JsonIncludeProperties("id")
     private List<Student> students;
 
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)

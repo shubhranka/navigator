@@ -1,6 +1,7 @@
 package com.shubhlranka.navigator.controllers;
 
 import com.shubhlranka.navigator.dto.CreateExamDto;
+import com.shubhlranka.navigator.dto.EnrollStudentDto;
 import com.shubhlranka.navigator.entities.Exam;
 import com.shubhlranka.navigator.services.ExamService;
 import jakarta.websocket.server.PathParam;
@@ -40,6 +41,12 @@ public class ExamController {
     @GetMapping("/exams")
     public List<Exam> getExams() {
         return examService.findAll();
+    }
+
+    @PostMapping("/exam/{examId}")
+    public String addStudent(@PathVariable("examId") long examId, @RequestBody EnrollStudentDto enrollStudentDto) {
+        examService.enrollStudent(examId, enrollStudentDto);
+        return "Student added to exam";
     }
 
 }

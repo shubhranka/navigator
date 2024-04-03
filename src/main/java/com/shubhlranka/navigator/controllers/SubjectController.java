@@ -1,6 +1,7 @@
 package com.shubhlranka.navigator.controllers;
 
 import com.shubhlranka.navigator.dto.CreateSubjectDto;
+import com.shubhlranka.navigator.dto.EnrollStudentDto;
 import com.shubhlranka.navigator.entities.Subject;
 import com.shubhlranka.navigator.services.SubjectService;
 import jakarta.websocket.server.PathParam;
@@ -40,5 +41,11 @@ public class SubjectController {
     public String deleteSubject(@PathVariable("id") long id) {
         subjectService.deleteSubject(id);
         return "Subject deleted";
+    }
+
+    @PostMapping("/enroll/{subjectId}")
+    public String enrollStudent(@PathVariable("subjectId") long subjectId, @RequestBody EnrollStudentDto enrollStudentDto) {
+        subjectService.enrollStudent(subjectId, enrollStudentDto);
+        return "Student enrolled";
     }
 }
